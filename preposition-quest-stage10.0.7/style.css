@@ -1,0 +1,179 @@
+[hidden]{display:none!important}
+*{box-sizing:border-box} :root{color-scheme:dark;--ink:#eff8ff;--muted:#b8cfdd;--panel:#15364b;--accent:#ffd65a}html,body{margin:0;min-height:100%;background:#0d2638;color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overscroll-behavior:none}body{padding:clamp(8px,2vw,24px)}button{font:inherit;touch-action:none;user-select:none;-webkit-user-select:none}.app{max-width:1200px;margin:auto}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 auto 12px}.eyebrow{font-size:.7rem;letter-spacing:.13em;font-weight:800;color:#9fc4d8}.topbar h1{font-size:clamp(1.15rem,3vw,1.8rem);margin:3px 0 0}.header-actions{display:flex;gap:8px}.small-btn{border:1px solid #47677a;background:#1b4057;color:white;border-radius:12px;padding:10px 13px;font-weight:750}.small-btn:disabled{opacity:.45}.game-shell{position:relative;overflow:hidden;border:2px solid #355a70;border-radius:18px;background:#a4e5f5;box-shadow:0 18px 45px #0003;min-height:220px}#game-container{width:100%;line-height:0}#game-container canvas{display:block;width:100%!important;height:auto!important;touch-action:none}.screen-card{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:18px;background:linear-gradient(180deg,#0e3145d9,#102d40eF);line-height:1.4}.screen-card h2{font-size:clamp(1.35rem,4vw,2.5rem);margin:4px 0 8px}.screen-card p{color:#d3e5ef;margin:6px 0}.paw{font-size:clamp(2.3rem,6vw,4rem);color:var(--accent);line-height:1}.primary-btn{background:var(--accent);color:#25384a;border:0;border-radius:14px;padding:13px 23px;font-weight:900;margin:15px 0 7px;box-shadow:0 4px 0 #bd8b1f}.primary-btn span{margin-left:12px}.help{font-size:.8rem!important}.control-hint{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;color:var(--muted);font-size:.82rem;padding:12px}.touch-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 4px 12px}.move-pair{display:flex;gap:12px}.touch-btn{width:clamp(64px,12vw,84px);height:clamp(58px,10vw,74px);border-radius:18px;border:1px solid #66879a;background:#21475f;color:#fff;font-size:1.5rem;font-weight:900;box-shadow:0 4px 0 #0a1c29;touch-action:none}.touch-btn.active{background:#387493;transform:translateY(2px);box-shadow:0 2px 0 #0a1c29}.jump-btn{width:clamp(100px,22vw,145px);font-size:1rem;background:#e8b932;color:#233544;border-color:#ffe28b}.jump-btn span{font-size:1.35rem;margin-left:6px}.paused-badge{position:absolute;top:14px;left:50%;transform:translateX(-50%);padding:8px 16px;border-radius:20px;background:#102d40e8;font-weight:900;letter-spacing:.12em}.error-screen{position:absolute;inset:0;background:#381c25f2;padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;line-height:1.4}.error-screen p{max-width:500px}footer{text-align:center;color:#829fb0;font-size:.75rem;padding:8px}@media(min-width:800px){.touch-controls{max-width:440px;margin:auto}.touch-btn{opacity:.88}}@media(max-width:520px){body{padding:8px}.topbar{align-items:flex-start}.small-btn{padding:9px 10px;font-size:.8rem}.game-shell{border-radius:12px}.control-hint{font-size:.72rem;gap:7px 12px}.screen-card{padding:10px}.screen-card p{font-size:.85rem}.help{font-size:.68rem!important}}
+.answer-list{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0}.answer-btn{min-width:100px;border:2px solid #6b91a4;border-radius:12px;background:#1b4057;color:#fff;padding:12px 18px;font-weight:900;cursor:pointer}.answer-btn:disabled{opacity:.75}.answer-btn.correct{background:#23764d;border-color:#8de0b3}.answer-btn.incorrect{background:#8b3941;border-color:#f1a3aa}.quiz-screen{z-index:12}.quiz-screen p{max-width:600px}.quiz-screen #quizFeedback{font-weight:750;min-height:1.4em}
+
+/* Visual clue layout: picture first, caption below, then the question. */
+.quiz-screen{gap:3px;overflow-y:auto;justify-content:flex-start;padding:clamp(10px,2vw,22px)}
+.quiz-screen .quiz-clue-image{display:block;width:min(100%,420px);height:clamp(90px,20vh,150px);object-fit:contain;background:#e2f7ff;border:2px solid #9ccddd;border-radius:14px;margin:3px auto 0}
+.quiz-screen .quiz-clue-caption{font-size:clamp(.76rem,1.5vw,.95rem);max-width:650px;margin:3px auto;color:#f0f8ff}
+.quiz-screen h2{font-size:clamp(1.05rem,2.6vw,1.8rem);margin:2px 0 0}
+.quiz-screen #quizPrompt{font-size:clamp(.76rem,1.5vw,.95rem);margin:2px 0}
+.quiz-screen .answer-list{margin:5px 0;gap:7px}
+.quiz-screen .answer-btn{padding:9px 14px;min-width:85px}
+.quiz-screen #quizFeedback{font-size:.88rem;margin:2px 0;min-height:1.2em}
+.quiz-screen .primary-btn{margin:7px 0 2px}
+@media(max-height:560px){.quiz-screen .quiz-clue-image{height:78px}.quiz-screen{padding:6px}.quiz-screen h2{font-size:1.05rem}.quiz-screen .answer-btn{padding:7px 10px}}
+
+/* Clear visual cue: the gold dashed arrows in each clue illustration show the route. */
+.quiz-screen .path-hint{display:flex;align-items:center;justify-content:center;gap:7px;margin:2px auto 0;padding:4px 10px;border:1px solid #9a7625;border-radius:999px;background:#fff2bd;color:#553d08;font-size:clamp(.68rem,1.25vw,.8rem);font-weight:850;line-height:1.2}
+.path-swatch{display:inline-block;width:24px;height:0;border-top:4px dashed #e4a900;position:relative;flex:0 0 24px}
+.path-swatch:after{content:"";position:absolute;right:0;top:-6px;width:7px;height:7px;border-top:3px solid #e4a900;border-right:3px solid #e4a900;transform:rotate(45deg)}
+@media(max-height:560px){.quiz-screen .path-hint{padding:2px 8px;font-size:.65rem}}
+
+.game-over-screen{z-index:20;background:linear-gradient(180deg,#321c2deF,#142b3feF)}.game-over-screen #gameOverMessage{font-size:1rem}.game-over-screen #finalCoinScore,.game-over-screen #finalQuizScore{font-weight:850;color:#ffe08a;margin:3px 0}
+.hint-btn{margin:2px auto;padding:7px 14px;font-size:.85rem}.quiz-hint{max-width:600px;margin:2px auto;padding:7px 12px;border-radius:10px;background:#fff2bd;color:#553d08;font-weight:700;font-size:.88rem}.quiz-screen .answer-btn{max-width:100%;white-space:normal}.quiz-screen .answer-list{max-width:760px;margin-left:auto;margin-right:auto}
+.quiz-screen .answer-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:min(100%,760px)}.quiz-screen .answer-btn{width:100%;min-width:0;line-height:1.25}.quiz-screen .answer-btn[hidden]{display:none!important}@media(max-width:560px){.quiz-screen .answer-list{grid-template-columns:1fr}.quiz-screen .quiz-clue-image{height:clamp(76px,16vh,120px)}}
+
+.victory-screen{z-index:22;background:linear-gradient(180deg,#155c4beF,#142b3feF)}.victory-screen #victoryCoinScore,.victory-screen #victoryQuizScore{font-weight:850;color:#ffe08a;margin:3px 0}.victory-screen h2{color:#fff4b0}
+
+
+/* Stage 6: touch input and responsive polish */
+#game-container, #game-container canvas { -webkit-tap-highlight-color: transparent; }
+.touch-controls { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+.touch-btn { min-width: 64px; min-height: 58px; -webkit-tap-highlight-color: transparent; }
+.touch-btn:focus-visible, .small-btn:focus-visible, .primary-btn:focus-visible, .answer-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.screen-card { overscroll-behavior: contain; }
+.quiz-screen { -webkit-overflow-scrolling: touch; }
+@media(max-width:380px) {
+  .touch-controls { gap: 8px; padding-left: 0; padding-right: 0; }
+  .move-pair { gap: 8px; }
+  .touch-btn { width: 60px; min-width: 60px; height: 58px; }
+  .jump-btn { width: 96px; min-width: 96px; font-size: .9rem; }
+  .answer-btn { min-width: 76px; padding: 8px 10px; }
+  .header-actions { gap: 5px; }
+}
+@media (hover:none) and (pointer:coarse) {
+  .touch-btn { box-shadow: 0 3px 0 #0a1c29; }
+  .touch-btn:active { transform: translateY(2px); }
+}
+
+
+/* Stage 7: gentle, accessible learning feedback and celebration. */
+#quizFeedback { transition: color .16s ease, transform .16s ease; border-radius: 10px; padding: 4px 8px; }
+#quizFeedback.feedback-try-again { color: #ffe0a6; background: #71363bd9; }
+#quizFeedback.feedback-correct { color: #d7ffe7; background: #155c43d9; }
+#quizFeedback.feedback-shake { animation: feedbackShake .32s ease; }
+#quizFeedback.feedback-pop { animation: feedbackPop .36s ease; }
+@keyframes feedbackShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+@keyframes feedbackPop { 0%{transform:scale(.96)} 55%{transform:scale(1.035)} 100%{transform:scale(1)} }
+.victory-stars { color:#ffd65a!important; font-size:clamp(1.5rem,4vw,2.4rem); letter-spacing:.12em; text-shadow:0 2px 0 #8c6519; margin:0!important; animation:starArrive .55s ease-out both; }
+.victory-praise { color:#fff4b0!important; font-weight:850; max-width:620px; }
+@keyframes starArrive { from{opacity:0;transform:translateY(8px) scale(.85)} to{opacity:1;transform:translateY(0) scale(1)} }
+@media (prefers-reduced-motion: reduce) { #quizFeedback, .victory-stars { animation:none!important; transition:none!important; } }
+
+/* Stage 7.1: recovery overlay must remain above quiz and victory panels. */
+.error-screen { z-index: 100; }
+.error-screen .primary-btn { cursor: pointer; }
+
+
+/* Stage 7.4: make optional quiz hints readable above the dark modal backdrop. */
+.quiz-screen p.quiz-hint:not([hidden]) {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: min(100%, 650px);
+  max-width: 650px;
+  margin: 4px auto;
+  padding: 10px 14px;
+  color: #342300;
+  background: #fff1ad;
+  border: 2px solid #d8a92b;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 #805c12;
+  font-size: clamp(.9rem, 1.7vw, 1rem);
+  font-weight: 800;
+  line-height: 1.35;
+  opacity: 1;
+  text-shadow: none;
+}
+.quiz-screen .hint-btn:disabled {
+  opacity: 1;
+  color: #fff7d6;
+  background: #76500a;
+  border-color: #f5cf59;
+  cursor: default;
+}
+@media (max-width: 560px) {
+  .quiz-screen p.quiz-hint:not([hidden]) { padding: 8px 10px; font-size: .88rem; }
+}
+
+
+/* Stage 9.2: balanced responsive desktop layout and compact audio controls. */
+.app{width:min(100%,1360px)}
+.topbar{align-items:center; flex-wrap:wrap}
+.header-actions{align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.audio-controls{display:flex;align-items:center;gap:7px;padding:4px 8px;border:1px solid #355a70;background:#15364b;border-radius:12px;color:#c9deea;font-size:.78rem}
+.audio-controls input[type=range]{width:82px;accent-color:#ffd65a;cursor:pointer}
+#game-container{width:100%;max-width:100%;margin:0 auto}
+.game-shell{width:100%;min-height:0;aspect-ratio:16/9;max-height:calc(100vh - 185px)}
+#game-container canvas{width:100%!important;height:100%!important;object-fit:contain}
+.screen-card{overflow:auto}
+.touch-controls{max-width:520px;margin:0 auto}
+@media(min-width:900px){body{padding:clamp(12px,1.7vw,26px)}.topbar{margin-bottom:14px}.game-shell{border-radius:20px}.touch-controls{padding-top:8px}.control-hint{padding:8px 12px}.app{max-width:1280px}}
+@media(min-width:900px) and (min-height:800px){.game-shell{max-height:min(66vh,760px)}.touch-controls{margin-top:2px}.control-hint{padding:7px 12px}}
+@media(max-width:760px){.topbar{align-items:flex-start}.header-actions{gap:6px}.audio-controls{order:3;width:100%;justify-content:flex-end}.audio-controls label{font-size:.72rem}.audio-controls input[type=range]{width:74px}.game-shell{aspect-ratio:16/10;max-height:none}.touch-controls{max-width:100%;padding-top:8px}.screen-card{padding:clamp(8px,2.5vw,14px)}.screen-card h2{font-size:clamp(1.15rem,5vw,1.7rem)}.screen-card p{font-size:clamp(.78rem,2.8vw,.95rem)}}
+@media(max-width:420px){.audio-controls{gap:5px;padding:4px 6px}.audio-controls .small-btn{font-size:.72rem}.touch-btn{width:clamp(58px,17vw,72px);height:58px}.jump-btn{width:104px}.answer-list{gap:6px}.quiz-screen .answer-btn{min-width:75px;padding:8px 10px}}
+
+/* Stage 9.5: accessible typing-answer mode, responsive for touch screens. */
+.typing-answer{width:min(100%,620px);display:flex;flex-direction:column;align-items:stretch;gap:7px;margin:6px auto}
+.typing-answer[hidden]{display:none!important}
+.typing-answer label{font-weight:850;color:#fff4b0;text-align:left}
+.typing-answer input{width:100%;min-height:46px;border:2px solid #7ea7b9;border-radius:12px;background:#f6fcff;color:#163447;padding:11px 13px;font:inherit;font-size:1rem;touch-action:auto;user-select:text;-webkit-user-select:text}
+.typing-answer input:focus-visible{outline:3px solid #ffd65a;outline-offset:2px}
+.typing-answer input:disabled{opacity:.8}
+.typing-answer .typing-help{font-size:.78rem;text-align:left;margin:0;color:#d3e5ef}
+.typing-answer .primary-btn{align-self:center;min-width:170px;touch-action:manipulation}
+
+/* Stage 9.6: accessible tap-to-build sentence interaction with optional mouse drag */
+.sentence-builder{width:min(100%,760px);margin:8px auto 4px;padding:10px;border:1px solid #54758a;border-radius:14px;background:#0c2638aa}.builder-instruction{font-size:.9rem!important}.sentence-slots{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:7px;min-height:54px;padding:10px;margin:8px 0;background:#092030;border:2px dashed #7c9caf;border-radius:12px}.builder-placeholder{color:#9db6c5;font-size:.85rem}.sentence-word-bank{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;padding:7px}.sentence-word{border:1px solid #7194a8;background:#214b64;color:#fff;border-radius:10px;padding:8px 12px;font-weight:800;touch-action:manipulation;cursor:pointer}.sentence-word:focus-visible{outline:3px solid #ffd65a;outline-offset:2px}.placed-word{background:#f7d66b;color:#243746;border-color:#ffe9a3}.builder-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.builder-actions .primary-btn{margin:4px 0 7px}.sentence-word:disabled{opacity:.65}@media(max-width:520px){.sentence-builder{padding:7px}.sentence-word{padding:9px 10px;font-size:.85rem}.builder-actions .small-btn{padding:8px 10px}}
+
+/* Stage 9.7: speaking challenge with graceful typing fallback. */
+.speaking-challenge{width:min(100%,620px);margin:6px auto;padding:10px 12px;border:1px solid #64889a;border-radius:14px;background:#14374b}
+.speaking-challenge[hidden]{display:none!important}
+.speaking-challenge p{margin:5px auto}
+.speech-status{font-weight:800;color:#fff0a5!important;min-height:1.5em}
+.speech-transcript{min-height:1.4em;color:#d9f3ff!important;overflow-wrap:anywhere}
+.speech-actions{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px}
+.speech-actions .primary-btn{margin:5px 0;min-width:170px}
+.speech-actions .small-btn{touch-action:manipulation}
+@media(max-width:560px){.speaking-challenge{padding:8px}.speech-actions{gap:6px}.speech-actions button{max-width:100%}}
+
+/* Stage 10.0.1: keep the title overlay and its start action above the game canvas. */
+#startScreen { z-index: 30; pointer-events: auto; }
+#startScreen #startBtn { position: relative; z-index: 31; pointer-events: auto; cursor: pointer; }
+#game-container { position: relative; z-index: 0; }
+
+
+/* Stage 10.0.5: make quiz answer controls reliably receive mouse and touch input. */
+#game-container { z-index: 0; }
+#game-container canvas { position: relative; z-index: 0; }
+#quizScreen {
+  position: absolute;
+  z-index: 50;
+  pointer-events: auto;
+  isolation: isolate;
+}
+#quizScreen button,
+#quizScreen input,
+#quizScreen label,
+#quizScreen .answer-list,
+#quizScreen .answer-btn {
+  pointer-events: auto;
+  position: relative;
+  z-index: 51;
+  cursor: pointer;
+}
+#quizScreen .typing-answer input { cursor: text; }
+#quizScreen[hidden] { display: none !important; }
+
+
+/* Stage 10.0.6: robust click/touch target for quiz options. */
+.game-shell { position: relative; }
+#quizScreen { pointer-events: auto !important; }
+#quizScreen .answer-list { pointer-events: auto !important; }
+#quizScreen .answer-btn { pointer-events: auto !important; touch-action: manipulation; }
+#quizScreen::before, #quizScreen::after { pointer-events: none !important; }
+
+/* Stage 10.0.7: explicit interactive quiz answer buttons. */
+#answerChoiceList { position: relative; z-index: 60; pointer-events: auto !important; }
+#answerChoiceList .answer-btn { position: relative; z-index: 61; pointer-events: auto !important; touch-action: manipulation; cursor: pointer; }

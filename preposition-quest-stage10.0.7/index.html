@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="theme-color" content="#143b57"><title>Preposition Quest — Prototype</title><link rel="stylesheet" href="style.css"></head>
+<body><main class="app"><header class="topbar"><div><span class="eyebrow">IMELUNE PRIVATE · PLAYABLE PROTOTYPE</span><h1>Preposition Quest</h1></div><div class="header-actions"><div class="audio-controls" aria-label="Sound settings"><button id="muteBtn" class="small-btn" type="button" aria-pressed="false" title="Mute sound">🔊 Sound</button><label for="volumeSlider">Volume</label><input id="volumeSlider" type="range" min="0" max="100" value="55" aria-label="Sound volume"></div><button id="pauseBtn" class="small-btn" disabled>Ⅱ Pause</button><button id="restartBtn" class="small-btn" disabled>↻ Restart</button></div></header>
+<section class="game-shell"><div id="game-container" aria-label="Preposition Quest game area"></div><div id="startScreen" class="screen-card"><div class="paw">✦</div><p class="eyebrow">THE MISSING GOLDEN PAW</p><h2>Ready for an adventure?</h2><p>Explore three worlds, collect 18 coins, and solve eight preposition challenges using OVER, UNDER, THROUGH, AROUND, NEXT TO, BETWEEN, BEHIND, and IN FRONT OF.</p><button id="startBtn" class="primary-btn">Start Adventure <span>→</span></button><p class="help">Keyboard: ← → or A/D · Jump: Space / ↑ · Sound can be muted</p></div><div id="errorScreen" class="error-screen" hidden role="alert"><strong>Game needs recovery</strong><p id="errorText">An asset failed to load. Check the project folder and reload.</p><button id="recoverBtn" class="primary-btn" type="button">Recover Game ↻</button></div><div id="pausedBadge" class="paused-badge" hidden>PAUSED</div>
+<div id="gameOverScreen" class="screen-card game-over-screen" hidden role="dialog" aria-modal="true" aria-labelledby="gameOverTitle"><div class="paw">✦</div><p class="eyebrow">ADVENTURE ENDED</p><h2 id="gameOverTitle">Game Over</h2><p id="gameOverMessage">You have no lives left.</p><p id="finalCoinScore">COINS: 0 / 18</p><p id="finalQuizScore">QUIZ SCORE: 0</p><button id="gameOverRestartBtn" class="primary-btn">Try Again <span>↻</span></button></div>
+<div id="victoryScreen" class="screen-card victory-screen" hidden role="dialog" aria-modal="true" aria-labelledby="victoryTitle"><div class="paw">✦</div><p class="eyebrow">TRAIL COMPLETE</p><h2 id="victoryTitle">Quest Completed!</h2><p>You explored three worlds, solved eight contextual challenges, and reached the finish gate.</p><p id="victoryCoinScore">COINS: 0 / 18</p><p id="victoryQuizScore">QUIZ SCORE: 0 / 24</p><p id="victoryStars" class="victory-stars" aria-label="Quiz score stars">☆☆☆☆</p><p id="victoryPraise" class="victory-praise">You did it!</p><button id="victoryRestartBtn" class="primary-btn">Play Again <span>↻</span></button></div>
+<div id="quizScreen" class="screen-card quiz-screen" hidden role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+  <p id="quizEyebrow" class="eyebrow">PREPOSITION CHALLENGE 01 · OVER</p>
+  <img id="quizClueImage" class="quiz-clue-image" src="assets/clues/over.svg" alt="A character jumping over a crate">
+  <p class="path-hint"><span class="path-swatch" aria-hidden="true"></span> Follow the golden path in the picture</p>
+  <p id="quizClueCaption" class="quiz-clue-caption">Look at the picture: the character jumps above the crate.</p>
+  <h2 id="quizTitle">Which preposition describes the picture?</h2>
+  <p id="quizPrompt">Choose the word that best describes the character’s path.</p>
+  <div id="answerChoiceList" class="answer-list"><button type="button" class="answer-btn" data-answer="under">UNDER</button><button type="button" class="answer-btn" data-answer="over">OVER</button><button type="button" class="answer-btn" data-answer="through">THROUGH</button><button type="button" class="answer-btn" data-answer="around">AROUND</button></div>
+  <form id="typingAnswerForm" class="typing-answer" hidden autocomplete="off">
+    <label id="typingAnswerLabel" for="typingAnswerInput">Type your answer</label>
+    <input id="typingAnswerInput" type="text" maxlength="180" autocapitalize="sentences" spellcheck="false" placeholder="Type your answer here" aria-describedby="typingAnswerHelp">
+    <p id="typingAnswerHelp" class="typing-help">Check your spelling, then submit.</p>
+    <button id="submitTypingAnswerBtn" class="primary-btn" type="submit">Check Answer ✓</button>
+  </form>
+  <section id="speakingChallenge" class="speaking-challenge" hidden aria-label="Speaking challenge">
+    <p id="speakingInstruction">Say the correct preposition clearly.</p>
+    <p class="speech-status" id="speechStatus" aria-live="polite">Press Start Speaking, then allow microphone access.</p>
+    <p class="speech-transcript" id="speechTranscript" aria-live="polite"></p>
+    <div class="speech-actions">
+      <button id="startSpeakingBtn" class="primary-btn" type="button">🎙 Start Speaking</button>
+      <button id="stopSpeakingBtn" class="small-btn" type="button" hidden>Stop</button>
+      <button id="switchToTypingBtn" class="small-btn" type="button" hidden>Type instead</button>
+    </div>
+  </section>
+  <section id="sentenceBuilder" class="sentence-builder" hidden aria-label="Sentence builder">
+    <p class="builder-instruction">Tap the words in the correct order to build the sentence. You can also drag them on a computer.</p>
+    <div id="sentenceSlots" class="sentence-slots" aria-label="Your sentence" aria-live="polite"><span class="builder-placeholder">Your sentence will appear here…</span></div>
+    <div id="sentenceWordBank" class="sentence-word-bank" aria-label="Available words"></div>
+    <div class="builder-actions"><button id="undoWordBtn" class="small-btn" type="button">↶ Undo</button><button id="resetWordsBtn" class="small-btn" type="button">Reset</button><button id="submitSentenceBtn" class="primary-btn" type="button">Check Sentence ✓</button></div>
+  </section>
+  <button id="hintBtn" class="small-btn hint-btn" type="button">Show Hint</button>
+  <p id="quizHint" class="quiz-hint" hidden></p>
+  <p id="quizFeedback" aria-live="polite">Choose the preposition that describes the jump.</p>
+  <button id="continueQuizBtn" class="primary-btn" hidden>Continue Adventure <span>→</span></button>
+</div></section>
+<div class="control-hint"><span>← / → Move</span><span>SPACE / ↑ Jump</span><span>Tap and hold on mobile</span></div>
+<section class="touch-controls" aria-label="Touch controls"><div class="move-pair"><button class="touch-btn" data-control="left" aria-label="Move left">◀</button><button class="touch-btn" data-control="right" aria-label="Move right">▶</button></div><button class="touch-btn jump-btn" data-control="jump" aria-label="Jump">JUMP <span>↑</span></button></section>
+<footer>Preposition Quest · Three Worlds · Eight Challenges</footer></main><script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script><script src="js/quiz-manager.js"></script><script src="js/game.js"></script></body></html>
